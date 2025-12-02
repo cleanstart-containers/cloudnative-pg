@@ -1,0 +1,64 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: cloudnative-pg-operator
+  labels:
+    app: cloudnative-pg-operator
+    component: operator
+rules:
+- apiGroups: [""]
+  resources: ["pods", "services", "endpoints", "persistentvolumeclaims", "events", "configmaps", "secrets"]
+  verbs: ["*"]
+- apiGroups: [""]
+  resources: ["namespaces"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["apps"]
+  resources: ["deployments", "daemonsets", "replicasets", "statefulsets"]
+  verbs: ["*"]
+- apiGroups: ["monitoring.coreos.com"]
+  resources: ["servicemonitors"]
+  verbs: ["get", "create"]
+- apiGroups: ["apps"]
+  resourceNames: ["cloudnative-pg-operator"]
+  resources: ["deployments/finalizers"]
+  verbs: ["update"]
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get"]
+- apiGroups: ["apps"]
+  resources: ["replicasets"]
+  verbs: ["get"]
+- apiGroups: ["postgresql.cnpg.io"]
+  resources: ["*"]
+  verbs: ["*"]
+- apiGroups: ["batch"]
+  resources: ["jobs"]
+  verbs: ["*"]
+- apiGroups: ["policy"]
+  resources: ["poddisruptionbudgets"]
+  verbs: ["*"]
+- apiGroups: ["coordination.k8s.io"]
+  resources: ["leases"]
+  verbs: ["*"]
+- apiGroups: ["admissionregistration.k8s.io"]
+  resources: ["mutatingwebhookconfigurations", "validatingwebhookconfigurations"]
+  verbs: ["*"]
+- apiGroups: ["certificates.k8s.io"]
+  resources: ["certificatesigningrequests"]
+  verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: cloudnative-pg-operator
+  labels:
+    app: cloudnative-pg-operator
+    component: operator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cloudnative-pg-operator
+subjects:
+- kind: ServiceAccount
+  name: cloudnative-pg-operator
+  namespace: cnpg-system  # Changed from cloudnative-pg-system

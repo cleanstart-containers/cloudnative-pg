@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cnpg-webhook-service
+  namespace: cnpg-system
+  labels:
+    app: cloudnative-pg-operator
+    app.kubernetes.io/name: cloudnative-pg
+    app.kubernetes.io/component: operator
+spec:
+  type: ClusterIP
+  ports:
+  - name: metrics
+    port: 8081
+    targetPort: 8081
+    protocol: TCP
+  - name: webhook
+    port: 9443
+    targetPort: 9443
+    protocol: TCP
+  selector:
+    app: cloudnative-pg-operator
+    component: operator
