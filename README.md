@@ -1,24 +1,24 @@
-**CleanStart Container for CloudNativePG**
+- *CleanStart Container for CloudNativePG**
 
 CloudNativePG is an open-source Kubernetes operator designed for managing PostgreSQL databases in cloud-native environments. This container provides a secure, enterprise-ready environment for running the CloudNativePG operator with built-in capabilities for automated PostgreSQL cluster management, high availability, backup, and recovery. The image includes optimized PostgreSQL management tools and security hardening for production deployments.
 
 📌 **CleanStart Foundation**: Security-hardened, minimal base OS designed for enterprise containerized environments.
 
-**Key Features**
-* Automated PostgreSQL cluster deployment and management
-* High availability and automatic failover capabilities
-* Built-in backup and restore functionality
-* Enterprise-grade security controls and access management
+- *Key Features**
+- Automated PostgreSQL cluster deployment and management
+- High availability and automatic failover capabilities
+- Built-in backup and restore functionality
+- Enterprise-grade security controls and access management
 
-**Common Use Cases**
-* Production PostgreSQL database management in Kubernetes
-* Automated PostgreSQL cluster orchestration
-* High-availability database deployments
-* Scalable PostgreSQL application databases
+- *Common Use Cases**
+- Production PostgreSQL database management in Kubernetes
+- Automated PostgreSQL cluster orchestration
+- High-availability database deployments
+- Scalable PostgreSQL application databases
 
-**Quick Start**
+- *Quick Start**
 
-**Pull Latest Image**
+- *Pull Latest Image**
 Download the container image from the registry
 
 ```bash
@@ -26,14 +26,14 @@ docker pull cleanstart/cloudnative-pg:latest
 docker pull cleanstart/cloudnative-pg:latest-dev
 ```
 
-**Basic Run**
+- *Basic Run**
 Run the container with basic configuration
 
 ```bash
 docker run -it --name cloudnative-pg-test cleanstart/cloudnative-pg:latest-dev
 ```
 
-**Production Deployment**
+- *Production Deployment**
 Deploy with production security settings
 
 ```bash
@@ -44,32 +44,32 @@ docker run -d --name cloudnative-pg-prod \
   cleanstart/cloudnative-pg:latest
 ```
 
-**Volume Mount**
+- *Volume Mount**
 Mount local directory for persistent data
 
 ```bash
 docker run -v $(pwd)/data:/data cleanstart/cloudnative-pg:latest
 ```
 
-**Port Forwarding**
+- *Port Forwarding**
 Run with custom port mappings
 
 ```bash
 docker run -p 8080:80 cleanstart/cloudnative-pg:latest
 ```
 
-**Configuration**
+- *Configuration**
 
-**Environment Variables**
+- *Environment Variables**
 
 | Variable | Default | Description |
 |----------|---------|-------------|
 | PATH | /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin | System PATH configuration |
 | MANAGER_OPERATOR_ENDPOINT | localhost:9443 | Endpoint for the CloudNativePG operator service |
 
-**Security & Best Practices**
+- *Security & Best Practices**
 
-**Recommended Security Context**
+- *Recommended Security Context**
 
 ```yaml
 securityContext:
@@ -82,36 +82,36 @@ securityContext:
     drop: ['ALL']
 ```
 
-**Best Practices**
-* Use specific image tags for production (avoid latest)
-* Configure resource limits: memory and CPU constraints
-* Enable read-only root filesystem when possible
-* Run containers with non-root user (--user 1000:1000)
-* Use --security-opt=no-new-privileges flag
-* Regularly update container images for security patches
-* Implement proper network segmentation
-* Monitor container metrics for anomalies
+- *Best Practices**
+- Use specific image tags for production (avoid latest)
+- Configure resource limits: memory and CPU constraints
+- Enable read-only root filesystem when possible
+- Run containers with non-root user (--user 1000:1000)
+- Use --security-opt=no-new-privileges flag
+- Regularly update container images for security patches
+- Implement proper network segmentation
+- Monitor container metrics for anomalies
 
-**Architecture Support**
+- *Architecture Support**
 
-**Multi-Platform Images**
+- *Multi-Platform Images**
 
 ```bash
 docker pull --platform linux/amd64 cleanstart/cloudnative-pg:latest
 docker pull --platform linux/arm64 cleanstart/cloudnative-pg:latest
 ```
 
-**
-### 
-### Resources
+- *
 
-- Official Documentation: https://cloudnative-pg.io/documentation/
-- View Provenance, Specifications, SBOM, Signature at: https://images.cleanstart.com/images/cloudnative-pg
-- Docker Hub: https://hub.docker.com/r/cleanstart/cloudnative-pg
-- CleanStart All Images: https://images.cleanstart.com
-- CleanStart All Community Images: https://hub.docker.com/u/cleanstart
+###
 
----
+## Resources
+
+- **Official Documentation:** https://cloudnative-pg.io/documentation/
+- **Provenance / SBOM / Signature:** https://images.cleanstart.com/images/cloudnative-pg
+- **Docker Hub:** https://hub.docker.com/r/cleanstart/cloudnative-pg
+- **CleanStart All Images:** https://images.cleanstart.com
+- **CleanStart Community Images:** https://hub.docker.com/u/cleanstart
 
 ### Vulnerability Disclaimer
 
