@@ -102,14 +102,14 @@ docker pull --platform linux/arm64 cleanstart/cloudnative-pg:latest
 ```
 
 **
-### Resources & Documentation  
-Essential links and resources for further information:
+### 
+### Resources
 
-- CleanStart Website: https://www.cleanstart.com
+- Official Documentation: https://cloudnative-pg.io/documentation/
 - View Provenance, Specifications, SBOM, Signature at: https://images.cleanstart.com/images/cloudnative-pg
+- Docker Hub: https://hub.docker.com/r/cleanstart/cloudnative-pg
 - CleanStart All Images: https://images.cleanstart.com
-- CleanStart Community Images: https://hub.docker.com/u/cleanstart
-- Other location for Community image: https://hub.docker.com/r/cleanstart/cloudnative-pg
+- CleanStart All Community Images: https://hub.docker.com/u/cleanstart
 
 ---
 
