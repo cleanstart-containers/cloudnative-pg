@@ -36,15 +36,15 @@ Typical scenarios where this container excels:
 
 Download the container image from the registry:
 ```bash
-docker pull cleanstart/cloudnative-pg:latest
-docker pull cleanstart/cloudnative-pg:latest-dev
+docker pull ghcr.io/cleanstart-containers/cloudnative-pg:latest
+docker pull ghcr.io/cleanstart-containers/cloudnative-pg:latest-dev
 ```
 
 ### Basic Run
 
 Run the container with basic configuration:
 ```bash
-docker run -it --name cloudnative-pg-test cleanstart/cloudnative-pg:latest-dev
+docker run -it --name cloudnative-pg-test ghcr.io/cleanstart-containers/cloudnative-pg:latest-dev
 ```
 
 ### Production Deployment
@@ -55,21 +55,21 @@ docker run -d --name cloudnative-pg-prod \
   --read-only \
   --security-opt=no-new-privileges \
   --user 1000:1000 \
-  cleanstart/cloudnative-pg:latest
+  ghcr.io/cleanstart-containers/cloudnative-pg:latest
 ```
 
 ### Volume Mount
 
 Mount local directory for persistent data:
 ```bash
-docker run -v $(pwd)/data:/data cleanstart/cloudnative-pg:latest
+docker run -v $(pwd)/data:/data ghcr.io/cleanstart-containers/cloudnative-pg:latest
 ```
 
 ### Port Forwarding
 
 Run with custom port mappings:
 ```bash
-docker run -p 8080:80 cleanstart/cloudnative-pg:latest
+docker run -p 8080:80 ghcr.io/cleanstart-containers/cloudnative-pg:latest
 ```
 
 ---
@@ -116,8 +116,8 @@ securityContext:
 
 ### Multi-Platform Images
 ```bash
-docker pull --platform linux/amd64 cleanstart/cloudnative-pg:latest
-docker pull --platform linux/arm64 cleanstart/cloudnative-pg:latest
+docker pull --platform linux/amd64 ghcr.io/cleanstart-containers/cloudnative-pg:latest
+docker pull --platform linux/arm64 ghcr.io/cleanstart-containers/cloudnative-pg:latest
 ```
 
 ---
