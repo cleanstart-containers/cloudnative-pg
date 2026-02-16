@@ -127,7 +127,7 @@ docker pull --platform linux/arm64 ghcr.io/cleanstart-containers/cloudnative-pg:
 - **Official Documentation:** https://cloudnative-pg.io/documentation/
 - **Provenance / SBOM / Signature:** https://images.cleanstart.com/images/cloudnative-pg
 - **Docker Hub:** https://hub.docker.com/r/cleanstart/cloudnative-pg
-- **CleanStart All Images:** https://images.cleanstart.com
+- **CleanStart All Images:** https://images.cleanstart.com/images/cloudnative-pg/details
 - **CleanStart Community Images:** https://hub.docker.com/u/cleanstart
 
 ---
