@@ -120,7 +120,7 @@ kubectl get deployment -n cnpg-system cloudnative-pg-operator
 
 The `READY` column should show `1/1`.
 
-# 🔄 Step 6 – Replace Operator Image With Your Custom Image
+# 🔄 Step 11 – Replace Operator Image With Your Custom Image
 
 Patch the deployment:
 
@@ -143,7 +143,7 @@ Expected:
 cleanstart/cloudnative-pg:latest-dev
 ```
 
-### Step 11: Test with a PostgreSQL cluster
+### Step 12: Test with a PostgreSQL cluster
 ```bash
 kubectl apply -f - <<EOF
 apiVersion: postgresql.cnpg.io/v1
@@ -158,40 +158,40 @@ spec:
 EOF
 ```
 
-### Step 12: Watch cluster creation
+### Step 13: Watch cluster creation
 ```bash
 kubectl get pods -n default -w
 ```
 
 You should see `postgres-test-1` pod come up.
 
-### Step 13: Check cluster status
+### Step 14: Check cluster status
 ```bash
 kubectl get cluster -n default
 ```
 
 The cluster should show `INSTANCES: 1` and `READY: 1`.
 
-### Step 14: Verify PostgreSQL is running
+### Step 15: Verify PostgreSQL is running
 ```bash
 kubectl logs postgres-test-1 -n default
 ```
 
 Look for PostgreSQL startup messages.
 
-### Step 15: Check operator health
+### Step 16: Check operator health
 ```bash
 kubectl get pods -n cnpg-system -o wide
 ```
 
 The pod should be in `Running` state with `READY: 1/1`.
 
-### Step 16: Cleanup test cluster
+### Step 17: Cleanup test cluster
 ```bash
 kubectl delete cluster postgres-test -n default
 ```
 
-### Step 17: Cleanup operator (optional)
+### Step 18: Cleanup operator (optional)
 ```bash
 # Remove the operator deployment
 kubectl delete -f deployment.yaml
