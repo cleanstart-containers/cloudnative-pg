@@ -30,7 +30,7 @@ This directory contains Kubernetes manifests to deploy the CloudNativePG operato
 
 ### Step 1: Install CRDs (Critical - Must be done first!)
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.27/releases/cnpg-1.27.0.yaml
+kubectl apply -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.28/releases/cnpg-1.28.1.yaml
 ```
 
 Without these, the operator literally cannot function - it's like trying to run a PostgreSQL client without PostgreSQL server installed.
@@ -119,6 +119,29 @@ kubectl get deployment -n cnpg-system cloudnative-pg-operator
 ```
 
 The `READY` column should show `1/1`.
+
+# 🔄 Step 6 – Replace Operator Image With Your Custom Image
+
+Patch the deployment:
+
+```bash
+kubectl set image deployment/cnpg-controller-manager \
+  manager=cleanstart/cloudnative-pg:latest-dev \
+  -n cnpg-system
+```
+
+Verify:
+
+```bash
+kubectl get deploy cnpg-controller-manager -n cnpg-system \
+  -o jsonpath='{.spec.template.spec.containers[0].image}'
+```
+
+Expected:
+
+```
+cleanstart/cloudnative-pg:latest-dev
+```
 
 ### Step 11: Test with a PostgreSQL cluster
 ```bash
@@ -231,3 +254,5 @@ After deploying the operator, you can:
 2. Configure backup and restore operations
 3. Set up monitoring and alerting
 4. Scale PostgreSQL instances as needed
+
+
