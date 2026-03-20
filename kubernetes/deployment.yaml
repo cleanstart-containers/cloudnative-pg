@@ -60,22 +60,22 @@ spec:
           requests:
             cpu: 100m
             memory: 128Mi
-        livenessProbe:
-          httpGet:
-            path: /healthz
-            port: 8081
-          initialDelaySeconds: 15
-          periodSeconds: 20
-          timeoutSeconds: 1
-          failureThreshold: 3
-        readinessProbe:
-          httpGet:
-            path: /readyz
-            port: 8081
-          initialDelaySeconds: 5
-          periodSeconds: 10
-          timeoutSeconds: 1
-          failureThreshold: 3
+        # livenessProbe:
+        #   httpGet:
+        #     path: /healthz
+        #     port: 8081
+        #   initialDelaySeconds: 15
+        #   periodSeconds: 20
+        #   timeoutSeconds: 1
+        #   failureThreshold: 3
+        # readinessProbe:
+        #   httpGet:
+        #     path: /readyz
+        #     port: 8081
+        #   initialDelaySeconds: 5
+        #   periodSeconds: 10
+        #   timeoutSeconds: 1
+        #   failureThreshold: 3
         securityContext:
           allowPrivilegeEscalation: false
           runAsNonRoot: true

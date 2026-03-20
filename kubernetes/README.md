@@ -30,7 +30,7 @@ This directory contains Kubernetes manifests to deploy the CloudNativePG operato
 
 ### Step 1: Install CRDs (Critical - Must be done first!)
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.27/releases/cnpg-1.27.0.yaml
+kubectl apply -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.28/releases/cnpg-1.28.1.yaml
 ```
 
 Without these, the operator literally cannot function - it's like trying to run a PostgreSQL client without PostgreSQL server installed.
@@ -120,7 +120,30 @@ kubectl get deployment -n cnpg-system cloudnative-pg-operator
 
 The `READY` column should show `1/1`.
 
-### Step 11: Test with a PostgreSQL cluster
+# 🔄 Step 11 – Replace Operator Image With Your Custom Image
+
+Patch the deployment:
+
+```bash
+kubectl set image deployment/cnpg-controller-manager \
+  manager=cleanstart/cloudnative-pg:latest-dev \
+  -n cnpg-system
+```
+
+Verify:
+
+```bash
+kubectl get deploy cnpg-controller-manager -n cnpg-system \
+  -o jsonpath='{.spec.template.spec.containers[0].image}'
+```
+
+Expected:
+
+```
+cleanstart/cloudnative-pg:latest-dev
+```
+
+### Step 12: Test with a PostgreSQL cluster
 ```bash
 kubectl apply -f - <<EOF
 apiVersion: postgresql.cnpg.io/v1
@@ -135,40 +158,40 @@ spec:
 EOF
 ```
 
-### Step 12: Watch cluster creation
+### Step 13: Watch cluster creation
 ```bash
 kubectl get pods -n default -w
 ```
 
 You should see `postgres-test-1` pod come up.
 
-### Step 13: Check cluster status
+### Step 14: Check cluster status
 ```bash
 kubectl get cluster -n default
 ```
 
 The cluster should show `INSTANCES: 1` and `READY: 1`.
 
-### Step 14: Verify PostgreSQL is running
+### Step 15: Verify PostgreSQL is running
 ```bash
 kubectl logs postgres-test-1 -n default
 ```
 
 Look for PostgreSQL startup messages.
 
-### Step 15: Check operator health
+### Step 16: Check operator health
 ```bash
 kubectl get pods -n cnpg-system -o wide
 ```
 
 The pod should be in `Running` state with `READY: 1/1`.
 
-### Step 16: Cleanup test cluster
+### Step 17: Cleanup test cluster
 ```bash
 kubectl delete cluster postgres-test -n default
 ```
 
-### Step 17: Cleanup operator (optional)
+### Step 18: Cleanup operator (optional)
 ```bash
 # Remove the operator deployment
 kubectl delete -f deployment.yaml
@@ -231,3 +254,5 @@ After deploying the operator, you can:
 2. Configure backup and restore operations
 3. Set up monitoring and alerting
 4. Scale PostgreSQL instances as needed
+
+
